@@ -1,5 +1,5 @@
 "use strict";
 
-const dev = require('./dev');
-
-module.exports = { dev };
+module.exports = {
+    'port' : 80
+};

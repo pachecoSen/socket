@@ -5,7 +5,7 @@ const { resolve } = require('path'),
 
 const path = require(resolve(__dirname, '../server/config/path'));
 
-const {port} = process.env.PORT || require(path('config')),
+const {port} = require(path('config')),
     server = require(path('server')),
     socket = require(path('socket'));
 

@@ -2,21 +2,21 @@
 
 const express = require('express'),
     { resolve } = require('path'),
-    consola = require('chalk');
+    {green:success, red:error, yellow} = require( 'terminal-kit' ).terminal;
 
 const publicPatch = resolve(__dirname, '../../../public');
 
 module.exports = app => {
     app.use(express.static(publicPatch));
 
-    consola.bgYellow('\n\n---------- Starting components ----------');
+    yellow('\n\n---------- Starting components ----------\n');
     ['routes'].forEach(e => {
         try {
             require(`./${ e }`)(app);
-            consola.green(`Component '${ e }' loaded successfully`);
-        } catch (error) {
-            consola.red(`Component '${ e }' not loaded`);
+            success(`Component '${ e }' loaded successfully\n`);
+        } catch (err) {
+            error(`Component '${ e }' not loaded\n`);
         }
     });
-    consola.bgYellow('---------- Finished work ----------\n\n');
+    yellow('---------- Finished work ----------\n\n');
 }
